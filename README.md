@@ -1,6 +1,6 @@
 # 🚀 **NMIMS TECHFEST WEBSITE** - Powering the Ultimate Tech Extravaganza!
 
-![Techfest Banner](https://nmimstechfiesta.in/images/NMTF.png)
+![Techfest Banner](reference-tf.png)
 
 ## 🌐 **About the Website**
 This is the **official** NMIMS Techfest website—designed to deliver a seamless experience for participants, organizers, and tech enthusiasts! Built for speed, engagement, and interactivity, this platform ensures that Techfest 2025 is **bigger, better, and smarter than ever before!** 💻🚀
