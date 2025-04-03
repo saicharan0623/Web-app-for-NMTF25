@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JALSA 2024 - Cultural Extravaganza</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        /* Previous styles remain the same until .contact-card */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        body {
+            background-image:url('../images/bg.png');
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+            cursor: pointer;
+            background-size:cover;
+            background-repeat:no-repeat;
+        }
+
+        .particle-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            text-align: center;
+            padding: 10px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .title {
+            font-size: 6em;
+            font-weight: bold;
+            background: linear-gradient(45deg, #ffffff, #ff9999, #800000);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 20px rgba(128,0,0,0.3);
+            animation: titleGlow 3s infinite alternate;
+        }
+
+        @keyframes titleGlow {
+            0% { text-shadow: 0 0 20px rgba(128,0,0,0.3); }
+            100% { text-shadow: 0 0 40px rgba(128,0,0,0.6); }
+        }
+
+        .subtitle {
+            font-size: 1.8em;
+            margin-top: 20px;
+            color: #ff9999;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .info-card {
+            background: rgba(128, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 40px 0;
+            transform: translateY(50px);
+            opacity: 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            border: 1px solid rgba(128,0,0,0.2);
+        }
+
+        .info-card h2 {
+            color: #ff9999;
+            margin-bottom: 20px;
+            font-size: 2em;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .contact-card {
+            background: rgba(128, 0, 0, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(128,0,0,0.2);
+            opacity: 0;
+            transform: scale(0.9);
+        }
+
+        .contact-card:hover {
+            background: rgba(128, 0, 0, 0.2);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+
+        .contact-role {
+            color: #ff9999;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .contact-person {
+            margin-bottom: 20px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        .contact-person:last-child {
+            margin-bottom: 0;
+        }
+
+        .contact-name {
+            font-size: 1.2em;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+
+        .contact-details {
+            color: #ffcccc;
+        }
+
+        .floating-notes {
+            position: absolute;
+            font-size: 24px;
+            color: rgba(255,153,153,0.6);
+            pointer-events: none;
+            animation: float 3s linear infinite;
+            z-index: 1000;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+            50% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .ripple {
+            position: fixed;
+            border-radius: 50%;
+            background: rgba(128, 0, 0, 0.3);
+            transform: scale(0);
+            animation: ripple-effect 1s cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: none;
+        }
+
+        @keyframes ripple-effect {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .title {
+                font-size: 3em;
+            }
+            
+            .subtitle {
+                font-size: 1.4em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="particle-container"></div>
+    <div class="container">
+        <header>
+            <h1 class="title">JALSA</h1>
+            <p class="subtitle">Theme: Rhythm of The Regions</p>
+        </header>
+
+        <div class="info-card">
+            <p>Get ready to witness an explosion of talent, creativity, and cultural flair at JALSA, the ultimate inter-school cultural extravaganza! Schools from across the region will showcase their best in themed performances, including dance, music, and drama, with each team captivating the audience in their 20-minute act.</p><br>
+            <p>The highlight of the event is the coveted "TFT 2025", awarded to the school that delivers the most outstanding performance, embodying the spirit of artistic excellence and teamwork.</p>
+            <br><br><br><div style="display: flex; justify-content: center;">
+  <h2>How to Participate</h2>
+</div>
+
+            <p>To participate, schools must first coordinate with their respective campus cultural club and the NMTF Campus Ambassador to finalize their team. Once the team list is submitted, individual participants can register through a separate registration link, which will be provided to the selected teams.</p>
+        </div>
+
+      
+
+        <div class="info-card">
+            <h2>Campus Representatives</h2>
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="contact-role">Mumbai Campus</div>
+                    <div class="contact-person">
+                        <div class="contact-name">Dr. Sumita Nainan</div>
+                        <div class="contact-details">Faculty I/C</div>
+                    </div>
+                    <div class="contact-person">
+                        <div class="contact-name">Usaid Ali</div>
+                        <div class="contact-details">Campus Ambassador</div>
+                    </div>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-role">Shirpur Campus</div>
+                    <div class="contact-person">
+                        <div class="contact-name">Dr. Suyog V Pande</div>
+                        <div class="contact-details">Faculty I/C</div>
+                    </div>
+                    <div class="contact-person">
+                        <div class="contact-name">Kabeer Choudhary</div>
+                        <div class="contact-details">Campus Ambassador</div>
+                    </div>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-role">Indore Campus</div>
+                    <div class="contact-person">
+                        <div class="contact-name">Dr. Dharmendra Sharma</div>
+                        <div class="contact-details">Faculty I/C</div>
+                    </div>
+                    <div class="contact-person">
+                        <div class="contact-name">Paragi Chouhan</div>
+                        <div class="contact-details">Campus Ambassador</div>
+                    </div>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-role">Navi Mumbai Campus</div>
+                    <div class="contact-person">
+                        <div class="contact-name">Dr. Anindita Khade</div>
+                        <div class="contact-details">Faculty I/C</div>
+                    </div>
+                    <div class="contact-person">
+                        <div class="contact-name">Rushikesh Giri</div>
+                        <div class="contact-details">Campus Ambassador</div>
+                    </div>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-role">Chandigarh Campus</div>
+                    <div class="contact-person">
+                        <div class="contact-name">Dr. Ashish Mogra</div>
+                        <div class="contact-details">Faculty I/C</div>
+                    </div>
+                    <div class="contact-person">
+                        <div class="contact-name">Aryamann</div>
+                        <div class="contact-details">Campus Ambassador</div>
+                    </div>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-role">Hyderabad Campus</div>
+                    <div class="contact-person">
+                        <div class="contact-name">Dr. Rahul Koshti</div>
+                        <div class="contact-details">Faculty I/C</div>
+                    </div>
+                    <div class="contact-person">
+                        <div class="contact-name">Harsh Bang</div>
+                        <div class="contact-details">Campus Ambassador</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Initialize GSAP animations
+        gsap.to(".subtitle", {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            delay: 0.5
+        });
+
+        gsap.utils.toArray(".info-card").forEach((card, i) => {
+            gsap.to(card, {
+                scrollTrigger: {
+                    trigger: card,
+                    start: "top 80%",
+                    end: "top 50%",
+                    scrub: 1
+                },
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                delay: i * 0.2
+            });
+        });
+
+        gsap.utils.toArray(".contact-card").forEach((card, i) => {
+            gsap.to(card, {
+                scrollTrigger: {
+                    trigger: card,
+                    start: "top 90%"
+                },
+                opacity: 1,
+                scale: 1,
+                duration: 0.6,
+                delay: i * 0.1
+            });
+        });
+
+        // Floating musical notes with improved positioning
+        const musicalSymbols = ['♪', '♫', '♬', '♩', '🎵', '🎶'];
+        
+        function createFloatingNote(x, y) {
+            const note = document.createElement('div');
+            note.className = 'floating-notes';
+            note.innerHTML = musicalSymbols[Math.floor(Math.random() * musicalSymbols.length)];
+            
+            // Position the note at click coordinates if provided, otherwise random
+            if (x && y) {
+                note.style.left = `${x}px`;
+                note.style.top = `${y}px`;
+            } else {
+                note.style.left = Math.random() * 100 + 'vw';
+                note.style.top = '100vh';
+            }
+            
+            document.querySelector('.particle-container').appendChild(note);
+            note.addEventListener('animationend', () => note.remove());
+        }
+
+        // Create background notes periodically
+        setInterval(() => createFloatingNote(), 2000);
+
+        // Click handler for notes and ripple effect
+        document.addEventListener('click', (e) => {
+            // Create ripple effect
+            const ripple = document.createElement('div');
+            ripple.className = 'ripple';
+            ripple.style.left = `${e.clientX}px`;
+            ripple.style.top = `${e.clientY}px`;
+            document.body.appendChild(ripple);
+            setTimeout(() => ripple.remove(), 1000);
+
+            // Create multiple notes at click position
+            for (let i = 0; i < 5; i++) {
+                setTimeout(() => {
+                    createFloatingNote(
+                        e.clientX + (Math.random() - 0.5) * 50,
+                        e.clientY + (Math.random() - 0.5) * 50
+                    );
+                }, i * 100);
+            }
+        });
+    </script>
+</body>
+</html>

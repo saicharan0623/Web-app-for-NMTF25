@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NM SHARKS - Event Details</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #8B0000;
+            --primary-dark: #600000;
+            --background: #0a0a0a;
+            --surface: #1a1a1a;
+            --text: #ffffff;
+            --text-secondary: #cccccc;
+            --accent: #ff1a1a;
+            --glow: 0 0 10px rgba(139, 0, 0, 0.5);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background-image: url("../images/bg.png");
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+    
+        }
+
+        .event-header {
+            background: linear-gradient(135deg, var(--surface), var(--primary-dark));
+            padding: 3rem 1rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 2px solid var(--primary);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+        }
+
+        .event-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(139, 0, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(139, 0, 0, 0.1) 0%, transparent 50%);
+        }
+
+        .event-header h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            position: relative;
+            text-shadow: 0 0 15px rgba(139, 0, 0, 0.7);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px rgba(139, 0, 0, 0.7);
+            }
+            to {
+                text-shadow: 0 0 20px rgba(139, 0, 0, 0.9), 0 0 30px rgba(139, 0, 0, 0.6);
+            }
+        }
+
+        .prize-pool {
+            font-size: clamp(1.2rem, 3vw, 1.6rem);
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-weight: bold;
+            text-shadow: var(--glow);
+        }
+
+        .deadline-container {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .deadline-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(139, 0, 0, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            backdrop-filter: blur(5px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .tabs {
+            background: var(--surface);
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            overflow: hidden;
+            border: 1px solid rgba(139, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .tab-nav {
+            display: flex;
+            background: rgba(139, 0, 0, 0.1);
+            border-bottom: 2px solid var(--primary);
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            position: relative;
+        }
+
+        .tab-nav::-webkit-scrollbar {
+            display: none;
+        }
+
+        .tab-btn {
+            padding: 1rem 1.5rem;
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tab-btn i {
+            font-size: 1.1rem;
+        }
+
+        .tab-btn:hover {
+            color: var(--text);
+            background: rgba(139, 0, 0, 0.1);
+        }
+
+        .tab-btn.active {
+            color: var(--text);
+            background: rgba(139, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--accent);
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from { transform: scaleX(0); }
+            to { transform: scaleX(1); }
+        }
+
+        .tab-content {
+            padding: 2rem;
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .highlight-box {
+            background: rgba(139, 0, 0, 0.1);
+            border-left: 4px solid var(--primary);
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+            transition: transform 0.3s ease;
+        }
+
+        .highlight-box:hover {
+            transform: translateX(5px);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .contact-card {
+            background: rgba(139, 0, 0, 0.1);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid rgba(139, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(139, 0, 0, 0.2);
+        }
+
+        .register-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            margin-top: 1.5rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: var(--glow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .register-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(139, 0, 0, 0.4);
+        }
+
+        .register-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                120deg,
+                transparent,
+                rgba(255, 255, 255, 0.3),
+                transparent
+            );
+            transition: 0.5s;
+        }
+
+        .register-btn:hover::before {
+            left: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .event-header {
+                padding: 2rem 1rem;
+            }
+
+            .deadline-container {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: center;
+            }
+
+            .tab-nav {
+                flex-wrap: nowrap;
+                justify-content: flex-start;
+            }
+
+            .tab-btn {
+                padding: 0.8rem;
+                font-size: 0.8rem;
+            }
+
+            .tab-content {
+                padding: 1.5rem 1rem;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .tab-btn i {
+                font-size: 1rem;
+            }
+
+            .tab-btn span {
+                display: none;
+            }
+
+            .tab-btn {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="event-header">
+        <h1>NM SHARKS</h1>
+        <div class="prize-pool">Prize Pool: Seed Funding from Investors</div>
+        <div class="deadline-container">
+            <!--<div class="deadline-item">-->
+            <!--    <i class="fas fa-calendar-alt"></i>-->
+            <!--    <span>Abstract Deadline: 30th December 2024</span>-->
+            <!--</div>-->
+            <div class="deadline-item">
+                <i class="fas fa-clock"></i>
+                <span>Event Date: 14th February 2025</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="tabs">
+            <div class="tab-nav">
+                <button class="tab-btn active" onclick="openTab(event, 'description')">
+                    <i class="fas fa-info-circle"></i>
+                    <span>Description</span>
+                </button>
+                <button class="tab-btn" onclick="openTab(event, 'format')">
+                    <i class="fas fa-list-ol"></i>
+                    <span>Format</span>
+                </button>
+                <button class="tab-btn" onclick="openTab(event, 'rules')">
+                    <i class="fas fa-gavel"></i>
+                    <span>Rules</span>
+                </button>
+                <button class="tab-btn" onclick="openTab(event, 'problem')">
+                    <i class="fas fa-puzzle-piece"></i>
+                    <span>Evaluation</span>
+                </button>
+                <button class="tab-btn" onclick="openTab(event, 'resources')">
+                    <i class="fas fa-book"></i>
+                    <span>Resources</span>
+                </button>
+                <button class="tab-btn" onclick="openTab(event, 'registration')">
+                    <i class="fas fa-user-plus"></i>
+                    <span>Register</span>
+                </button>
+            </div>
+    
+            <div id="description" class="tab-content active">
+                <div class="highlight-box">
+                    <p>NM Sharks is a platform where budding entrepreneurs present their innovative ideas to a panel of investors. Participants will compete for funding and mentorship, evaluated on innovation, scalability, and market potential. Teams must meet or exceed their investment target, relying on strong presentations and feasible business plans to succeed.</p>
+                    
+                     <a href="../images/NM_SHARKS_Template.pptx" class="register-btn">
+                    <i class="fas fa-sign-in-alt"></i>
+                    <span>PPT Template</span>
+                </a>
+                </div>
+            </div>
+    
+            <div id="format" class="tab-content">
+                <h2>Event Format</h2>
+                <div class="highlight-box">
+                    <ul>
+                        <li>Participants: Individuals or teams</li>
+                        <li>Screening Round: Students are required to submit a video explaining their idea, along with a PowerPoint template. These submissions will be used for the shortlisting process.</li>
+                        <li>Pitch Duration: 10 minutes, followed by 5 minutes of Q&A</li>
+                    </ul>
+                </div>
+    
+                <h2>Timeline</h2>
+                <div class="highlight-box">
+                    <ul>
+                        <li>Abstract Submission Deadline: 30th December</li>
+                        <li>Event Date: 14th February</li>
+                        <li>Estimated Duration: 2–3 hours</li>
+                    </ul>
+                </div>
+            </div>
+    
+            <div id="rules" class="tab-content">
+                <div class="highlight-box">
+                    <h3>Competition Rules</h3>
+                    <ul>
+                        <li>Participants are expected to present original ideas with clear business plans</li>
+                        <li>Shortlisted entries from the screening round will proceed to the final pitch</li>
+                        <li>Detailed rules and guidelines will be shared closer to the event</li>
+                    </ul>
+                </div>
+            </div>
+    
+            <div id="problem" class="tab-content">
+                <div class="highlight-box">
+                    <p>Participants will be evaluated based on:</p>
+                    <ul>
+                        <li>Innovation in their business idea</li>
+                        <li>Scalability of the proposed solution</li>
+                        <li>Market potential</li>
+                        <li>Feasibility of the business plan</li>
+                    </ul>
+                </div>
+            </div>
+    
+            <div id="resources" class="tab-content">
+                <h2>Prize</h2>
+                <div class="highlight-box">
+                    <p>Winners will receive investments from the panel of investors based on their business proposals.</p>
+                </div>
+    
+                <div class="contact-grid">
+                    <div class="contact-card">
+                        <div class="contact-info">
+                            <i class="fas fa-user-circle fa-2x"></i>
+                            <h3>Mohammed Sohail</h3>
+                            <p><i class="fas fa-phone"></i> 7981813039</p>
+                            <p><i class="fas fa-envelope"></i> sohail.mohammed032@nmims.edu.in</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div id="registration" class="tab-content">
+                <div class="highlight-box">
+                    <h3>Registration Process</h3>
+                    <ul>
+                        <li>Create an account or login if you already have one</li>
+                        <li>Fill in your team details</li>
+                        <li>Upload required documents</li>
+                    </ul>
+                </div>
+              <a href="../php/student_login.php" class="register-btn">
+                    <i class="fas fa-sign-in-alt"></i>
+                    <span>Register Now</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openTab(evt, tabName) {
+            // Hide all tab content
+            const tabcontent = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].classList.remove("active");
+            }
+
+            // Remove active class from all tab buttons
+            const tablinks = document.getElementsByClassName("tab-btn");
+            for (let i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("active");
+            }
+
+            // Show the selected tab content and mark the button as active
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+
+        // Add smooth scrolling for mobile navigation
+        document.querySelector('.tab-nav').addEventListener('scroll', (e) => {
+            e.preventDefault();
+        }, { passive: true });
+
+        // Add touch slide functionality for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+        const tabNav = document.querySelector('.tab-nav');
+
+        tabNav.addEventListener('touchstart', (e) => {
+            touchStartX = e.touches[0].clientX;
+        }, { passive: true });
+
+        tabNav.addEventListener('touchmove', (e) => {
+            touchEndX = e.touches[0].clientX;
+            const diffX = touchStartX - touchEndX;
+            tabNav.scrollLeft += diffX / 5;
+        }, { passive: true });
+    </script>
+</body>
+</html>

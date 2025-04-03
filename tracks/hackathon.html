@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hackathon - event details</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #8B0000;
+            --primary-dark: #600000;
+            --background: #0a0a0a; 
+            --surface: #1a1a1a;
+            --text: #ffffff;
+            --text-secondary: #cccccc;
+            --accent: #ff1a1a;
+            --glow: 0 0 10px rgba(139, 0, 0, 0.5);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+
+        body {
+            background-image: url("../images/bg.png");
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+        
+        }
+
+        .event-header {
+            background: linear-gradient(135deg, var(--surface), var(--primary-dark));
+            padding: 3rem 1rem;
+            text-align: center;
+            position: relative;
+            font-family: 'Orbitron', sans-serif;
+            overflow: hidden;
+            border-bottom: 2px solid var(--primary);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+        }
+
+        .event-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(139, 0, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(139, 0, 0, 0.1) 0%, transparent 50%);
+        }
+
+        .event-header h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            position: relative;
+            text-shadow: 0 0 15px rgba(139, 0, 0, 0.7);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px rgba(139, 0, 0, 0.7);
+            }
+            to {
+                text-shadow: 0 0 20px rgba(139, 0, 0, 0.9), 0 0 30px rgba(139, 0, 0, 0.6);
+            }
+        }
+
+        .prize-pool {
+            font-size: clamp(1.2rem, 3vw, 1.6rem);
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-weight: bold;
+            text-shadow: var(--glow);
+        }
+
+        .deadline-container {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .deadline-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(139, 0, 0, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            backdrop-filter: blur(5px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .tabs {
+            background: var(--surface);
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            overflow: hidden;
+            border: 1px solid rgba(139, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .tab-nav {
+            display: flex;
+            background: rgba(139, 0, 0, 0.1);
+            border-bottom: 2px solid var(--primary);
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            position: relative;
+        }
+
+        .tab-nav::-webkit-scrollbar {
+            display: none;
+        }
+
+        .tab-btn {
+            padding: 1rem 1.5rem;
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tab-btn i {
+            font-size: 1.1rem;
+        }
+
+        .tab-btn:hover {
+            color: var(--text);
+            background: rgba(139, 0, 0, 0.1);
+        }
+
+        .tab-btn.active {
+            color: var(--text);
+            background: rgba(139, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--accent);
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from { transform: scaleX(0); }
+            to { transform: scaleX(1); }
+        }
+
+        .tab-content {
+            padding: 2rem;
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .highlight-box {
+            background: rgba(139, 0, 0, 0.1);
+            border-left: 4px solid var(--primary);
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+            transition: transform 0.3s ease;
+        }
+
+        .highlight-box:hover {
+            transform: translateX(5px);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .contact-card {
+            background: rgba(139, 0, 0, 0.1);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid rgba(139, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(139, 0, 0, 0.2);
+        }
+
+        .register-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            margin-top: 1.5rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: var(--glow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .register-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(139, 0, 0, 0.4);
+        }
+
+        .register-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                120deg,
+                transparent,
+                rgba(255, 255, 255, 0.3),
+                transparent
+            );
+            transition: 0.5s;
+        }
+
+        .register-btn:hover::before {
+            left: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .event-header {
+                padding: 2rem 1rem;
+            }
+
+            .deadline-container {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: center;
+            }
+
+            .tab-nav {
+                flex-wrap: nowrap;
+                justify-content: flex-start;
+            }
+
+            .tab-btn {
+                padding: 0.8rem;
+                font-size: 0.8rem;
+            }
+
+            .tab-content {
+                padding: 1.5rem 1rem;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .tab-btn i {
+                font-size: 1rem;
+            }
+
+            .tab-btn span {
+                display: none;
+            }
+
+            .tab-btn {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="event-header">
+        <a href="../index.html" class="back-button" style="position: absolute; top: 10px; right: 10px; text-decoration: none; color: white; font-size: 24px;">
+            <i class="fas fa-arrow-left"></i>
+        </a>
+    
+        <h1>HACKATHON</h1>
+        <div class="prize-pool" style="font-size: 1.5rem; margin: 10px 0;">
+            Get a chance to win PPI or Top Certifications
+        </div>
+            <div class="deadline-container">
+            <!--<div class="deadline-item">-->
+            <!--    <i class="fas fa-calendar-alt"></i>-->
+            <!--    <span>Abstract Submission Deadline: December 30, 2024</span>-->
+            <!--</div>-->
+            <div class="deadline-item">
+                <i class="fas fa-clock"></i>
+                <span>Event Date: February 14-15, 2025</span>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="tabs">
+            <div class="tab-nav">
+                <button class="tab-btn active" onclick="openTab(event, 'description')">
+                    <i class="fas fa-info-circle"></i>
+                    <span>Description</span>
+                </button>
+                <button class="tab-btn" onclick="openTab(event, 'format')">
+                    <i class="fas fa-list-ol"></i>
+                    <span>Format</span>
+                </button>
+                <button class="tab-btn" onclick="openTab(event, 'rules')">
+                    <i class="fas fa-gavel"></i>
+                    <span>Rules</span>
+                </button>
+                <button class="tab-btn" onclick="openTab(event, 'timeline')">
+                    <i class="fas fa-clock"></i>
+                    <span>Timeline</span>
+                </button>
+                <button class="tab-btn" onclick="openTab(event, 'contact')">
+                    <i class="fas fa-address-card"></i>
+                    <span>Resources</span>
+                </button>
+                <button class="tab-btn" onclick="openTab(event, 'registration')">
+                    <i class="fas fa-user-plus"></i>
+                    <span>Register</span>
+                </button>
+            </div>
+
+            <div id="description" class="tab-content active">
+                <div class="highlight-box">
+                    <p>The Hackathon is a signature event of NMIMS Tech Fiesta 2025, designed to challenge the brightest minds in development, design, and problem-solving. <br><br>Over an intense 24-hour competition, participants will work in teams to create innovative solutions based on predefined problem statements. The event offers a dynamic environment fostering creativity, collaboration, and practical learning while bridging the gap between academia and industry.</p>
+                    
+                      <a href="../images/Hackathon NMTF.pdf" class="register-btn">
+                    <i class="fas fa-sign-in-alt"></i>
+                    <span>Problem Statements</span>
+                </a>
+                 <a href="../images/NMTF_Hackathon_template.pptx" class="register-btn">
+                    <i class="fas fa-sign-in-alt"></i>
+                    <span>PPT Template</span>
+                </a>
+                </div>
+            </div>
+
+            <div id="format" class="tab-content">
+                <h2>Phase 1: Registration and Shortlisting</h2>
+                <div class="highlight-box">
+                    <ul>
+                        <li>Teams Register by Submitting:
+                            <ul>
+                                <li>Team Name and Members' Details</li>
+                                <li>Choosen Problem Statement</li>
+                                <li>Abstract (Problem Understanding and Approach in a PPT)</li>
+                            </ul>
+                        </li>
+                        <li>Top 15 teams will be selected for the final round</li>
+                    </ul>
+                </div>
+
+                <h2>Phase 2: Hackathon Day</h2>
+                <div class="highlight-box">
+                    <h3>Day 1: February 14, 2025</h3>
+                    <ul>
+                        <li>Teams assemble and work intensively over 24 hours</li>
+                        <li>Implementation of solutions</li>
+                        <li>Submission of final work</li>
+                    </ul>
+                    <h3>Day 2: February 15, 2025</h3>
+                    <ul>
+                        <li>Final Presentations to judges</li>
+                        <li>Award Ceremony</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="rules" class="tab-content">
+                <div class="highlight-box">
+                    <h3>Guidelines</h3>
+                    <ul>
+                        <li>Team Size: 4-6 members (A Female Student is Mandatory)</li>
+                        <li>Teams must choose one problem statement and stick to it</li>
+                        <li>only problem statements are provided. Datasets , images and other resoucres will not be given</li>
+                        <li>All submissions must be original and adhere to intellectual property laws</li>
+                        <li>Teams must bring their own laptops and resources</li>
+                        <li>Carry Your own extension boxes</li>
+
+                        <li>Solutions must be functional and feasible</li>                    </ul>
+                </div>
+
+                <div class="highlight-box">
+                    <h3>Judging Criteria</h3>
+                    <ul>
+                        <li>Relevance to Problem Statement</li>
+                        <li>Innovation and Creativity</li>
+                        <li>Usability and Impact</li>
+                        <li>Scalability and Feasibility</li>
+                        <li>Technical Implementation</li>
+                        <li>Presentation and Team Collaboration</li>
+                    </ul>
+                </div>
+            </div>
+            <div id="timeline" class="tab-content">
+                <div class="highlight-box">
+                    <h3>Key Dates</h3>
+                    <ul>
+                        <li>22nd November 2024: Registrations Open</li>
+                        <li>10th January 2025: Announcement of Shortlisted Teams</li>
+                        <li>14th February 2025: Hackathon Day 1</li>
+                        <li>15th February 2025: Hackathon Day 2</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box">
+                    <h3>Event Schedule - Day 1 (Feb 14)</h3>
+                    <ul>
+                        <li>11:00 AM: Opening Ceremony</li>
+                        <li>24-Hour Development Period Begins</li>
+                    </ul>
+                    
+                    <h3>Event Schedule - Day 2 (Feb 15)</h3>
+                    <ul>
+                        <li>Final Presentations</li>
+                        <li>Award Ceremony</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="contact" class="tab-content">
+                <h2>Contact Coordinator</h2>
+                <div class="contact-grid">
+                    <div class="contact-card">
+                        <div class="contact-info">
+                            <i class="fas fa-user-circle fa-2x"></i>
+                            <h3>Rudramoni Ananth Yadav</h3>
+                            <p><i class="fas fa-phone"></i> 9705431557</p>
+                            <p><i class="fas fa-envelope"></i> rudramoniananthyadav@gmail.com</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <h3>Resources Provided</h3>
+                    <ul>
+                        <li>Wi-Fi access during the event</li>
+                        <li>Power outlets for hardware setups</li>
+                       
+                    </ul>
+                    <h3>Note: Teams must bring their own laptops and additional tools</h3>
+                </div>
+            </div>
+
+            <div id="registration" class="tab-content">
+                <div class="highlight-box">
+                    <h3>Registration Process</h3>
+                    <ul>
+                        <li>Submit team details including all members</li>
+                        <li>Choose your problem statement</li>
+                        <li>Prepare and submit abstract in PPT format</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box">
+                    <h3>Eligibility</h3>
+                    <ul>
+                        <li>Must be NMIMS students from any campus</li>
+                        <li>Team size: 4-6 members</li>
+                        <li>Mandatory to have at least one female team member</li>
+                    </ul>
+                </div>
+               <a href="../php/student_login.php" class="register-btn">
+                    <i class="fas fa-sign-in-alt"></i>
+                    <span>Register Now</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openTab(evt, tabName) {
+            // Hide all tab content
+            const tabcontent = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].classList.remove("active");
+            }
+
+            // Remove active class from all tab buttons
+            const tablinks = document.getElementsByClassName("tab-btn");
+            for (let i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("active");
+            }
+
+            // Show the selected tab content and mark the button as active
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+
+        // Add smooth scrolling for mobile navigation
+        document.querySelector('.tab-nav').addEventListener('scroll', (e) => {
+            e.preventDefault();
+        }, { passive: true });
+
+        // Add touch slide functionality for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+        const tabNav = document.querySelector('.tab-nav');
+
+        tabNav.addEventListener('touchstart', (e) => {
+            touchStartX = e.touches[0].clientX;
+        }, { passive: true });
+
+        tabNav.addEventListener('touchmove', (e) => {
+            touchEndX = e.touches[0].clientX;
+            const diffX = touchStartX - touchEndX;
+            tabNav.scrollLeft += diffX / 5;
+        }, { passive: true });
+    </script>
+</body>
+</html>

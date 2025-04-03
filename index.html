@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NMIMS Tech Fiesta 2025</title>
+<link href="./css/styles.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/loaders/FBXLoader.js"></script>
+  <link rel="preconnect" href="https://nmimstechfiesta.in">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+ <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&amp;family=Roboto:wght@300;400;500&amp;display=swap" rel="stylesheet">
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" type="image/png" sizes="192x192" href="./images/1.png">
+  <!-- Preload critical images -->
+<link rel="preload" as="image" href="../images/bg.png">
+<link rel="preload" as="image" href="../images/stmelogo.png">
+<link rel="preload" as="image" href="../images/NMTF.png">
+  <style>
+  body {
+    background-image: url("../images/bg.png");
+    color: #fff;
+    background-color:black;
+    font-family: 'Orbitron', sans-serif;
+    margin: 0;  
+    justify-content: center;
+    align-items: center;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment:fixed;
+    min-height: 100vh;
+}
+
+/*body {*/
+/*    background: linear-gradient(135deg, */
+/*        rgba(80, 0, 0, 1) 0%, */
+/*        rgba(25, 0, 0, 1) 50%, */
+/*        rgba(0, 0, 0, 1) 100%*/
+/*    );*/
+/*    color: #fff; */
+/*    font-family: 'Orbitron', sans-serif; */
+/*    margin: 0; */
+/*    justify-content: center; */
+/*    align-items: center; */
+/*    min-height: 100vh;*/
+/*    background-size: cover;*/
+/*    background-attachment: fixed;*/
+/*}*/
+
+/*body::before {*/
+/*    content: "";*/
+/*    position: absolute;*/
+/*    top: 0;*/
+/*    left: 0;*/
+/*    width: 100%;*/
+/*    height: 100%;*/
+/*    background: radial-gradient(*/
+/*        circle at 70% 30%, */
+/*        rgba(100, 0, 0, 0.2) 0%, */
+/*        transparent 60%*/
+/*    );*/
+/*    pointer-events: none;*/
+/*}*/
+
+/*body::after {*/
+/*    content: "";*/
+/*    position: absolute;*/
+/*    top: 0;*/
+/*    left: 0;*/
+/*    width: 100%;*/
+/*    height: 100%;*/
+/*    background: linear-gradient(*/
+/*        45deg, */
+/*        rgba(50, 0, 0, 0.3) 0%, */
+/*        rgba(0, 0, 0, 0.4) 100%*/
+/*    );*/
+/*    opacity: 0.4;*/
+/*    pointer-events: none;*/
+/*}*/
+p{
+font-family: 'Times New Roman', Times, serif !important;
+}
+@media (max-width: 640px) {
+  #aboutus p {
+    hyphens: auto;
+    word-break: break-word;
+    text-align: justify;
+  }
+}
+  </style>
+</head>
+
+<body loading="lazy">
+  <nav class="nav-container">
+    <div class="nav-content">
+        <a href="index.html" class="logo">
+            <img src="../images/stmelogo.png" alt="STME Logo" loading="lazy">
+        </a>
+        <button class="menu-btn" onclick="toggleMenu()">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+        <div class="nav-links" id="nav-links">
+            <a href="./php/student_login.php">Login/Register</a>
+            <a href="./php/contact.php">Contact</a>
+            <a href="./images/NMTF25 eBrochure.pdf">Brochure</a>
+            <a href="./php/leaderboard.php">Leaderboard</a>
+        </div>
+    </div>
+</nav>
+
+<main>    
+<header class="header-container" >
+        <div id="particles-js" class="particles-container"></div>
+
+      <div class="header-gradient"></div>
+      
+      <div class="title-section">
+          <h1 class="title-text">
+              STME Hyderabad Presents
+          </h1>
+      </div>
+
+      <div class="content-section">
+          <img src="./images/NMTF.png" alt="tech Logo" class="logo-image">
+          
+          <p class="event-date">
+              February 14-15, 2025 | NMIMS Hyderabad Campus
+          </p>
+
+          <a href="./php/register.php" class="register-button">
+              Register Now
+          </a>
+      </div>
+  </header>
+
+  <section class="py-16 z-0 relative">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8" id="aboutus">
+    <h2 class="text-3xl font-bold mb-8 text-center">About the Tech Fiesta</h2>
+    <div class="max-w-4xl mx-auto text-center">
+      <p class="text-white-400 mb-4 inline-block text-left">
+        A premiere two-day event organized by STME at NMIMS Hyderabad in February 2025, 
+        this fest brings together students from all six NMIMS campuses to celebrate 
+        technical innovation and cultural vibrancy. The event promotes interdisciplinary 
+        collaboration and provides a unique platform for showcasing exceptional student talent.
+      </p>
+      <p class="text-white-400 mb-4 inline-block text-left">
+        The Tech Fiesta offers an exciting mix of competitive and interactive events, 
+        including a high-stakes Hackathon, NM Sharks pitch competition, and an innovative 
+        Project Expo. Winners will receive exclusive benefits like internships, mentorship 
+        opportunities, and potential seed funding for their innovative ideas.
+      </p>
+    </div>
+  </div>
+      
+      <h2 class="text-3xl font-bold mb-8 text-center text-white" style="margin-top: 100px;">Participating Campuses</h2>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-8" id="campuses">
+  
+        <div class="campus-card bg-black-900 rounded-lg shadow-md p-6 flex flex-col items-center">
+          <img src="./images/mumbai.jpg" alt="NMIMS Mumbai" class="w-24 h-24 mb-4 rounded-full">
+          <h3 class="text-s font-bold mb-2 text-white">NMIMS Mumbai</h3>
+        </div>
+  
+        <div class="campus-card bg-black-900 rounded-lg shadow-md p-6 flex flex-col items-center">
+          <img src="./images/navimumbai.jpg" alt="NMIMS Navi Mumbai" class="w-24 h-24 mb-4 rounded-full">
+          <h3 class="text-s font-bold mb-2 text-white">NMIMS Navi Mumbai</h3>
+        </div>
+  
+        <div class="campus-card bg-black-900 rounded-lg shadow-md p-6 flex flex-col items-center">
+          <img src="./images/shirput.jpg" alt="NMIMS Shirpur" class="w-24 h-24 mb-4 rounded-full">
+          <h3 class="text-s font-bold mb-2 text-white">NMIMS Shirpur</h3>
+        </div>
+  
+        <div class="campus-card bg-black-900 rounded-lg shadow-md p-6 flex flex-col items-center">
+          <img src="./images/indoor.jpg" alt="NMIMS Dhule" class="w-24 h-24 mb-4 rounded-full">
+          <h3 class="text-s font-bold mb-2 text-white">NMIMS Indore</h3>
+        </div>
+  
+        <div class="campus-card bg-black-900 rounded-lg shadow-md p-6 flex flex-col items-center">
+          <img src="./images/chandhigarh.jpg" alt="NMIMS Chandigarh" class="w-24 h-24 mb-4 rounded-full">
+          <h3 class="text-s font-bold mb-2 text-white">NMIMS Chandigarh</h3>
+        </div>
+
+        <div class="campus-card bg-black-900 rounded-lg shadow-md p-6 flex flex-col items-center">
+          <img src="./images/hyd.jpg" alt="NMIMS Hyderabad" class="w-24 h-24 mb-4 rounded-full">
+          <h3 class="text-s font-bold mb-2 text-white">NMIMS Hyderabad</h3>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-16 z-0 relative" id="themes" data-aos="fade-up">
+      <h2 class="text-3xl font-bold mb-8 text-center text-white">Themes</h2>
+
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="wrapper">
+          <div class="container">
+            <input type="radio" name="slide" id="c1" checked data-aos="fade-up">
+            <label for="c1" class="card2">
+              <div class="row">
+                <div class="icon" style="background-color: #fff; justify-content: center; align-items: center;">
+                  <i class="fas fa-robot text-4xl text-white-500"></i>
+                </div>
+                <div class="description">
+                  <h4>Generative AI</h4>
+                  <p>Explore the future of AI and its creative potentials.</p>
+                </div>
+              </div>
+            </label>
+    
+            <input type="radio" name="slide" id="c2" data-aos="fade-up" data-aos-delay="100">
+            <label for="c2" class="card2">
+              <div class="row">
+                <div class="icon" style="background-color: #fff; justify-content: center; align-items: center;">
+                  <i class="fas fa-medkit text-4xl text-white-500"></i>
+                </div>
+                <div class="description">
+                  <h4>Health and Biotech</h4>
+                  <p>Advances in health tech revolutionizing healthcare.</p>
+                </div>
+              </div>
+            </label>
+    
+            <input type="radio" name="slide" id="c3" data-aos="fade-up" data-aos-delay="200">
+            <label for="c3" class="card2">
+              <div class="row">
+                <div class="icon" style="background-color: #fff; justify-content: center; align-items: center;">
+                  <i class="fas fa-leaf text-4xl text-white-500"></i>
+                </div>
+                <div class="description">
+                  <h4>Green and Clean Technology</h4>
+                  <p>Innovating for a sustainable and cleaner future.</p>
+                </div>
+              </div>
+            </label>
+    
+            <input type="radio" name="slide" id="c4" data-aos="fade-up" data-aos-delay="300">
+            <label for="c4" class="card2">
+              <div class="row">
+                <div class="icon" style="background-color: #fff; justify-content: center; align-items: center;">
+                  <i class="fas fa-gamepad text-4xl text-white-500"></i>
+                </div>
+                <div class="description">
+                  <h4>Games</h4>
+                  <p>The evolution of gaming and interactive experiences.</p>
+                </div>
+              </div>
+            </label>
+    
+            <input type="radio" name="slide" id="c5">
+            <label for="c5" class="card2">
+              <div class="row">
+                <div class="icon" style="background-color: #fff; justify-content: center; align-items: center;">
+                  <i class="fas fa-cog text-4xl text-white-500"></i>
+                </div>
+                <div class="description">
+                  <h4>Smart Automation</h4>
+                  <p>The next wave of automation in industries and homes.</p>
+                </div>
+              </div>
+            </label>
+    
+            <input type="radio" name="slide" id="c6">
+            <label for="c6" class="card2">
+              <div class="row">
+                <div class="icon" style="background-color: #fff; justify-content: center; align-items: center;">
+                  <i class="fas fa-chart-line text-4xl text-white-500"></i>
+                </div>
+                <div class="description">
+                  <h4>Financial Practice</h4>
+                  <p>Trends and practices in the evolving financial landscape.</p>
+                </div>
+              </div>
+            </label>
+    
+            <input type="radio" name="slide" id="c7">
+            <label for="c7" class="card2">
+              <div class="row">
+                <div class="icon" style="background-color: #fff; justify-content: center; align-items: center;">
+                  <i class="fas fa-briefcase text-4xl text-white-500"></i>
+                </div>
+                <div class="description">
+                  <h4>Entrepreneurship</h4>
+                  <p>Fostering the spirit of entrepreneurship in the modern world.</p>
+                </div>
+              </div>
+            </label>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-16 z-0 relative" data-aos="fade-up">
+    <h2 class="text-3xl font-bold mb-8 text-center text-white">Signature Tracks</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-center">
+      <div class="card">
+        <p class="heading">
+          <i class="fas fa-code mr-2"></i> Hackathon
+        </p>
+        <p>Compete in teams to build innovative solutions.</p>
+        <a href="./tracks/hackathon.html" class="button">Know More</a>
+      </div>
+      <div class="card">
+        <p class="heading">
+          <i class="fas fa-rocket mr-2"></i> NM Sharks
+        </p>
+        <p>Pitch your startup idea to panel of investors</p>
+        <a href="./tracks/nmsharks.html" class="button">Know More</a>
+      </div>
+      <div class="card">
+        <p class="heading">
+          <i class="fas fa-flask mr-2"></i> Project Expo
+        </p>
+        <p>Showcase your innovative projects and prototypes.</p>
+        <a href="./tracks/projectexpo.html" class="button">Know More</a>
+      </div>
+    </div>
+</section>
+
+<section class="py-16 z-0 relative" data-aos="fade-up">
+  <h2 class="text-3xl font-bold mb-8 text-center text-white">Elite Tracks</h2>
+  <div class="grid grid-cols-1 sm:grid-cols-4 lg gap-8 justify-center">
+    
+    <div class="card">
+      <p class="heading">
+        <i class="fas fa-robot mr-2"></i> Robo Rumble
+      </p>
+      <p>Build,Race and Battle robots in thrilling challenges.</p>
+      <a href="./tracks/roborumble.html" class="button">Know More</a>
+    </div>
+
+    <div class="card">
+      <p class="heading">
+        <i class="fas fa-chart-line mr-2"></i> Dalal Den
+      </p>
+      <p>Test your skills in a simulated stock market.</p>
+      <a href="./tracks/dalalden.html" class="button">Know More</a>
+    </div>
+
+    <div class="card">
+      <p class="heading">
+        <i class="fas fa-gamepad mr-2"></i> Gamiverse
+      </p>
+      <p>Compete in esports and build your legacy</p>
+      <a href="./tracks/gamiverse.html" class="button">Know More</a>
+    </div>
+
+    <div class="card">
+      <p class="heading">
+        <i class="fas fa-camera-retro mr-2"></i> Filmotsav
+      </p>
+      <p>Unleash creativity: Lights, camera, competition</p>
+      <a href="./tracks/filmotsav.html" class="button">Know More</a>
+    </div>
+    </div>
+</section>
+
+  <section class="py-16 z-0 relative" data-aos="fade-up">
+    <h2 class="text-3xl font-bold mb-8 text-center text-white">Expert Dialogues</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8 justify-center">
+      
+      <div class="card">
+        <p class="heading">
+          <i class="fas fa-lightbulb
+ mr-2"></i> TEDx
+        </p>
+        <p>Ideas worth sharing, stories worth spreading</p>
+                <a href="" class="button">Know More</a>
+      </div>
+      
+      <div class="card">
+        <p class="heading">
+          <i class="fas fa-rocket mr-2"></i> Future Minds
+        </p>
+        <p>Workshop on Gen Ai and prompt engineering competition</p>
+        <a href="./tracks/futureminds.html" class="button">Know More</a>
+      </div>
+    
+    </div>
+  </section>
+  
+<section class="py-16 z-0 relative" style="background-image: url('./images/celebrations.jpeg'); background-size: cover; background-repeat: no-repeat;" data-aos="fade-up">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 h-full flex flex-col justify-center items-center" style="margin-top:50px;">
+    <h2 class="text-4xl font-bold mb-8 text-center text-white">Celebrations</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-3 gap-8 justify-center w-full">
+      <!-- Jalsa Section -->
+      <div class="bg-black/50 backdrop-blur-sm rounded-lg p-6 flex flex-col items-center justify-center h-full">
+        <i class="fas fa-music text-5xl text-red-500 mb-4"></i>
+        <h3 class="heading text-2xl font-bold text-white">Jalsa</h3>
+        <p class="text-gray-300 text-center mb-4">A cultural extravaganza where 6 schools showcase their artistic talent through dance, music, and art, all centered around a captivating theme</p>
+        <a href="./tracks/jalsa.html" class="bg-red-500 text-white font-medium px-4 py-2 rounded-full hover:bg-red-600 transition duration-300">
+          More Info
+        </a>
+      </div>
+      <div class="bg-black/50 backdrop-blur-sm rounded-lg p-6 flex flex-col items-center justify-center h-full">
+        <i class="fas fa-guitar text-5xl text-red-500 mb-4"></i>
+        <h3 class="heading text-2xl font-bold text-white">Live Band</h3>
+        <p class="text-gray-300 text-center">Join us for an unforgettable evening of diverse musical styles and live performances, celebrating the vibrant spirit of TechFiesta</p>
+      </div>
+      <div class="bg-black/50 backdrop-blur-sm rounded-lg p-6 flex flex-col items-center justify-center h-full">
+        <i class="fas fa-trophy text-5xl text-red-500 mb-4"></i>
+        <h3 class="heading text-2xl font-bold text-white">Awards Ceremony</h3>
+        <p class="text-gray-300 text-center">Celebrate the outstanding achievements of our participants and recognize their hard work and contributions to the Tech Fiesta.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-16 z-0 relative" data-aos="fade-up">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 class="text-3xl font-bold mb-8 text-center">Sign Up Now</h2>
+    <div class="max-w-lg mx-auto">
+      <div class="bg-black/50 backdrop-blur-sm rounded-lg p-6">
+        <h3 class="text-xl font-bold mb-4">Event Registration</h3>
+        <p class="text-gray-300 mb-4">Complete your registration before January 23rd, 2025.</p>
+        <p class="text-4xl font-bold mb-2">₹ 999/-</p>
+        <p class="text-gray-300 mb-4">Fee includes food and accommodation.</p>
+        <a href="./php/student_login.php" class="inline-block bg-gradient-to-r from-red-500 to-red-700 hover:from-red-600 hover:to-red-800 text-white font-medium py-3 px-8 rounded-full">
+          Sign Up Now
+        </a>
+      </div>
+    </div>
+    <div class="mt-8">
+     
+    </div>
+  </div>
+</section>
+
+<section class="py-16 z-0 relative" data-aos="fade-up">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 class="text-3xl font-bold mb-8 text-center">Nearest Transport Facilities</h2>
+    <div class="grid md:grid-cols-2 gap-8">
+      <div class="bg-black/50 backdrop-blur-sm rounded-lg p-6">
+        <h3 class="text-xl font-bold mb-4">Transport Distances</h3>
+        <ul class="space-y-3 text-white-600">
+          <li class="flex justify-between">
+            <span>RGI Airport:</span>
+            <span>67 km</span>
+          </li>
+          <li class="flex justify-between">
+            <span>Jadcherla Railway Station:</span>
+            <span>15 km</span>
+          </li>
+          <li class="flex justify-between">
+            <span>Mahabubnagar Railway Station:</span>
+            <span>28 km</span>
+          </li>
+          <li class="flex justify-between">
+            <span>Secunderabad Railway Station:</span>
+            <span>87 km</span>
+          </li>
+          <li class="flex justify-between">
+            <span>Kacheguda Railway Station:</span>
+            <span>79 km</span>
+          </li>
+          <li class="flex justify-between">
+            <span>Jadcherla Bus Stand:</span>
+            <span>8 km</span>
+          </li>
+          <li class="flex justify-between">
+            <span>Mahabubnagar Bus Stand:</span>
+            <span>30 km</span>
+          </li>
+          <li class="flex justify-between">
+            <span>MGBS Bus Stand:</span>
+            <span>78 km</span>
+          </li>
+          <li class="flex justify-between">
+            <span>JBS Bus Stand:</span>
+            <span>90 km</span>
+          </li>
+        </ul>
+      </div>
+      
+      <div class="bg-black/50 backdrop-blur-sm rounded-lg p-6">
+        <h3 class="text-xl font-bold mb-4">Location Map</h3>
+        <div class="w-full aspect-video">
+          <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3669.841664121519!2d78.1424947!3d16.825248199999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bca3174f92e7b17%3A0x55f32ff33b967591!2sNarsee%20Monjee%20Institute%20of%20Management%20Studies%20%7C%20NMIMS!5e1!3m2!1sen!2sin!4v1731944727205!5m2!1sen!2sin"            width="100%" 
+            height="100%" 
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+    <div class="mt-8 text-center">
+      <p class="text-white-600 italic">
+        Note: Distances are approximate and subject to change. Please verify current routes and distances.
+      </p>
+    </div>
+  </div>
+</section>
+
+  <!-- <section class="py-16 z-0 relative" data-aos="fade-up">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold mb-8 text-center">Our Sponsors</h2>
+      <div class="grid grid-cols-2 md:grid-cols-5 gap-8 justify-center">
+        <div class="bg-black/50 backdrop-blur-sm rounded-lg p-6 flex items-center justify-center">
+          <img src="/api/placeholder/200/100" alt="Sponsor 1" class="max-w-full h-auto">
+        </div>
+        <div class="bg-black/50 backdrop-blur-sm rounded-lg p-6 flex items-center justify-center">
+          <img src="/api/placeholder/200/100" alt="Sponsor 2" class="max-w-full h-auto">
+        </div>
+        <div class="bg-black/50 backdrop-blur-sm rounded-lg p-6 flex items-center justify-center">
+          <img src="/api/placeholder/200/100" alt="Sponsor 3" class="max-w-full h-auto">
+        </div>
+        <div class="bg-black/50 backdrop-blur-sm rounded-lg p-6 flex items-center justify-center">
+          <img src="/api/placeholder/200/100" alt="Sponsor 4" class="max-w-full h-auto">
+        </div>
+        <div class="bg-black/50 backdrop-blur-sm rounded-lg p-6 flex items-center justify-center">
+          <img src="/api/placeholder/200/100" alt="Sponsor 5" class="max-w-full h-auto">
+        </div>
+        <div class="bg-black/50 backdrop-blur-sm rounded-lg p-6 flex items-center justify-center">
+          <img src="/api/placeholder/200/100" alt="Sponsor 6" class="max-w-full h-auto">
+        </div>
+        <div class="bg-black/50 backdrop-blur-sm rounded-lg p-6 flex items-center justify-center">
+          <img src="/api/placeholder/200/100" alt="Sponsor 7" class="max-w-full h-auto">
+        </div>
+        <div class="bg-black/50 backdrop-blur-sm rounded-lg p-6 flex items-center justify-center">
+          <img src="/api/placeholder/200/100" alt="Sponsor 8" class="max-w-full h-auto">
+        </div>
+        <div class="bg-black/50 backdrop-blur-sm rounded-lg p-6 flex items-center justify-center">
+          <img src="/api/placeholder/200/100" alt="Sponsor 9" class="max-w-full h-auto">
+        </div>
+        <div class="bg-black/50 backdrop-blur-sm rounded-lg p-6 flex items-center justify-center">
+          <img src="/api/placeholder/200/100" alt="Sponsor 10" class="max-w-full h-auto">
+        </div>
+      </div>
+    </div>
+  </section> -->
+  <h2 class="text-3xl font-bold mb-8 text-center">Near by Places</h2>
+
+ <div class="scroll-container">
+    <div class="scroll-content">
+        <!-- Original cards -->
+        <div class="card-item">
+            <div class="card-image" style="background-image: url('../images/ramoji.jpg')"></div>
+            <div class="card-content">
+                <h3 class="card-title">Ramoji Film City</h3>
+                <p class="card-distance">Distance: 95 km</p>
+            </div>
+        </div>
+
+        <div class="card-item">
+            <div class="card-image" style="background-image: url('../images/charminar.jpg')"></div>
+            <div class="card-content">
+                <h3 class="card-title">Charminar</h3>
+                <p class="card-distance">Distance: 75 km</p>
+            </div>
+        </div>
+
+        <div class="card-item">
+            <div class="card-image" style="background-image: url('../images/statue_of_equality.webp')"></div>
+            <div class="card-content">
+                <h3 class="card-title">Statue of Equality</h3>
+                <p class="card-distance">Distance: 52 km</p>
+            </div>
+        </div>
+
+        <div class="card-item">
+            <div class="card-image" style="background-image: url('../images/zoopark.webp')"></div>
+            <div class="card-content">
+                <h3 class="card-title">Nehru Zoological Park</h3>
+                <p class="card-distance">Distance: 74 km</p>
+            </div>
+        </div>
+
+        <div class="card-item">
+            <div class="card-image" style="background-image: url('../images/golkonda.jpg')"></div>
+            <div class="card-content">
+                <h3 class="card-title">Golkonda</h3>
+                <p class="card-distance">Distance: 75 km</p>
+            </div>
+        </div>
+
+        <div class="card-item">
+            <div class="card-image" style="background-image: url('../images/wonderla.jpg')"></div>
+            <div class="card-content">
+                <h3 class="card-title">Wonderla</h3>
+                <p class="card-distance">Distance: 74 km</p>
+            </div>
+        </div>
+
+        <!-- Duplicated cards for smooth loop -->
+        <div class="card-item">
+            <div class="card-image" style="background-image: url('../images/ramoji.jpg')"></div>
+            <div class="card-content">
+                <h3 class="card-title">Ramoji Film City</h3>
+                <p class="card-distance">Distance: 95 km</p>
+            </div>
+        </div>
+
+        <div class="card-item">
+           <div class="card-image" style="background-image: url('../images/charminar.jpg')"></div>
+            <div class="card-content">
+                <h3 class="card-title">Charminar</h3>
+                <p class="card-distance">Distance: 75 km</p>
+            </div>
+        </div>
+
+        <div class="card-item">
+<div class="card-image" style="background-image: url('../images/statue_of_equality.webp')"></div>
+            <div class="card-content">
+                <h3 class="card-title">Statue of Equality</h3>
+                <p class="card-distance">Distance: 52 km</p>
+            </div>
+        </div>
+
+        <div class="card-item">
+            <div class="card-image" style="background-image: url('../images/wonderla.jpg')"></div>
+            <div class="card-content">
+                <h3 class="card-title">Wonderla</h3>
+                <p class="card-distance">Distance: 74 km</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+ <div class="faq-container">
+  <div class="faq-header">
+    <h2>FAQs</h2>
+  </div>
+
+  <div class="faq-list">
+        <div class="faq-item">
+      <button class="faq-question">
+        <h3>How can I participate in the events?</h3>
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+        </svg>
+      </button>
+      <div class="faq-answer">
+        <p>To participate, sign up on the website for FC access and complete your event registrations through the Google Form linked on the website.</p>
+      </div>
+    </div>
+      
+      
+      
+    <div class="faq-item">
+      <button class="faq-question">
+        <h3>Can I participate in more than one event?</h3>
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+        </svg>
+      </button>
+      <div class="faq-answer">
+        <p>Yes, you can register for multiple events as long as their schedules do not overlap.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        <h3>Will internet and accommodations be provided for participants from other locations?</h3>
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+        </svg>
+      </button>
+      <div class="faq-answer">
+        <p>Yes, accommodation, internet access, and food will be provided. Meals will include breakfast, lunch, and dinner for 2 days to ensure a comfortable stay for all participants.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        <h3>Do team members need to register individually for team events?</h3>
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+        </svg>
+      </button>
+      <div class="faq-answer">
+        <p>Yes, all team members must sign up on the website individually and fill out the registration form separately. This ensures proper tracking and management of each participant's FestCoin and event participation details.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        <h3>Will the registration fee be refunded if a participant isn't shortlisted for the final rounds?</h3>
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+        </svg>
+      </button>
+      <div class="faq-answer">
+        <p>Yes, if a participant is not shortlisted for the final rounds and chooses not to participate in any other tracks, the registration fee will be refunded within 3-4 working days after registartion deadline. Participants must submit a refund request within the specified timeframe to be eligible.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        <h3>How can I stay informed about future tech fest?</h3>
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+        </svg>
+      </button>
+      <div class="faq-answer">
+        <p>You can stay informed by following the tech fest's social media channels, and regularly visiting the official website.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        <h3>How will misconduct or disputes be handled?</h3>
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+        </svg>
+      </button>
+      <div class="faq-answer">
+        <p>Any misconduct or disputes will be addressed by the Core Committee and Faculty Panel, whose decisions will be final.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        <h3>What is the policy on smoking and drinking during the techfiest?</h3>
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+        </svg>
+      </button>
+      <div class="faq-answer">
+        <p>Smoking and drinking are strictly prohibited during the techfest. Anyone found engaging in such activities will face strict penalties, including disqualification from events and potential reporting to authorities. We aim to maintain a safe and respectful environment for all participants.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        <h3>What is FiestCoin (FC), and how is it used?</h3>
+        <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+        </svg>
+      </button>
+      <div class="faq-answer">
+        <p>FiestCoin (FC) is a virtual currency for the techfest. You earn FC by participating in events and convert your food bills to coins.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@1.37.2/tsparticles.bundle.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@1.37.2/tsparticles.bundle.min.js"></script>
+  <script src="../js/particles.js"></script>
+  <script src="../js/particles.min.js"></script>
+  <script>
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+});
+  </script>
+  <script>
+    // JavaScript ensures seamless looping
+    document.addEventListener('DOMContentLoaded', () => {
+        const scrollContainer = document.querySelector('.scroll-content');
+        const cards = [...scrollContainer.children];
+        cards.forEach(card => {
+            const clone = card.cloneNode(true);
+            scrollContainer.appendChild(clone);
+        });
+    });
+</script>
+    <script>
+        particlesJS("particles-js", {
+            particles: {
+                number: {
+                    value: 100,
+                },
+                color: {
+                    value: "#800000",
+                },
+                shape: {
+                    type: "circle",
+                },
+                opacity: {
+                    value: 0.6,
+                },
+                size: {
+                    value: 4,
+                },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: "#ff0000",
+                    opacity: 0.4,
+                    width: 1,
+                },
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: {
+                        enable: true,
+                        mode: "repulse",
+                    },
+                    resize: true,
+                },
+            },
+        });
+    </script>
+   <script>
+    document.getElementById('menu-btn').addEventListener('click', function() {
+      var menu = document.getElementById('menu');
+      menu.classList.toggle('hidden');
+    });
+  </script>
+<script>
+  AOS.init({
+    duration: 2000,
+    once: true, 
+    offset: 200,
+  });
+</script>
+<script>
+document.querySelectorAll('.faq-question').forEach(button => {
+  button.addEventListener('click', () => {
+    const answer = button.nextElementSibling;
+    const chevron = button.querySelector('.chevron');
+    
+    if (answer.style.display === 'none' || !answer.style.display) {
+      answer.style.display = 'block';
+      chevron.style.transform = 'rotate(180deg)';
+    } else {
+      answer.style.display = 'none';
+      chevron.style.transform = 'rotate(0)';
+    }
+  });
+});
+
+// Initially hide all answers
+document.querySelectorAll('.faq-answer').forEach(answer => {
+  answer.style.display = 'none';
+});
+</script>
+<script>
+  // Get the button element
+  const registerBtn = document.getElementById('registerBtn');
+
+  // Show the button when the user scrolls past the header
+  window.onscroll = function () {
+    if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+      registerBtn.classList.remove('hidden');
+    } else {
+      registerBtn.classList.add('hidden');
+    }
+  };
+
+  // Scroll to the registration section when the button is clicked
+  registerBtn.onclick = function () {
+    document.getElementById('register').scrollIntoView({ behavior: 'smooth' });
+  };
+</script>
+<script>
+  function toggleMenu() {
+      const menuBtn = document.querySelector('.menu-btn');
+      const navLinks = document.querySelector('.nav-links');
+      const body = document.body;
+      
+      menuBtn.classList.toggle('active');
+      navLinks.classList.toggle('active');
+      body.classList.toggle('menu-open');
+  }
+
+  // Close menu when clicking a link
+  document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+          const menuBtn = document.querySelector('.menu-btn');
+          const navLinks = document.querySelector('.nav-links');
+          const body = document.body;
+          
+          menuBtn.classList.remove('active');
+          navLinks.classList.remove('active');
+          body.classList.remove('menu-open');
+      });
+  });
+</script>
+<footer class="bg-black text-white py-8 w-full">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-wrap items-start justify-between">
+      <!-- Left Quick Links -->
+      <div class="w-1/2 sm:w-1/3 mb-4 sm:mb-0">
+        <h3 class="text-sm sm:text-lg font-bold mb-2">Quick Links</h3>
+        <ul class="space-y-2">
+          <li><a href="#aboutus" class="hover:underline text-sm sm:text-base">About Us</a></li>
+          <li><a href="./php/contact.php" class="hover:underline text-sm sm:text-base">Contact</a></li>
+          <li><a href="#themes" class="hover:underline text-sm sm:text-base">Themes</a></li>
+          <li><a href="#tracks" class="hover:underline text-sm sm:text-base">Tracks</a></li>
+          <li><a href="#campuses" class="hover:underline text-sm sm:text-base">Campuses</a></li>
+        </ul>
+      </div>
+      
+      <!-- Center Image and Contact -->
+      <div class="w-full sm:w-1/3 text-center mb-4 order-first sm:order-none">
+        <img src="./images/2.png" alt="STME Logo" class="h-16 sm:h-24 mx-auto mb-4">
+        <!-- Contact Links -->
+        <div class="flex flex-col items-center space-y-2">
+          <a href="https://instagram.com/nmims.techfiesta25" class="flex items-center hover:text-pink-500 transition-colors">
+            <i class="fab fa-instagram text-xl mr-2"></i>
+            <span class="text-sm sm:text-base">@nmims.techfiesta25</span>
+          </a>
+          <a href="mailto:stme.hyd@nmims.edu" class="flex items-center hover:text-blue-400 transition-colors">
+            <i class="far fa-envelope text-xl mr-2"></i>
+            <span class="text-sm sm:text-base">stme.hyd@nmims.edu</span>
+          </a>
+          <a href="tel:+919876543210" class="flex items-center hover:text-green-400 transition-colors">
+            <i class="fas fa-phone text-xl mr-2"></i>
+            <span class="text-sm sm:text-base">+91 83284 86089</span>
+          </a>
+        </div>
+      </div>
+      
+      <!-- Right Quick Links -->
+      <div class="w-1/2 sm:w-1/3 text-right">
+        <h3 class="text-sm sm:text-lg font-bold mb-2">Quick Links</h3>
+        <ul class="space-y-2">
+          <li><a href="#events" class="hover:underline text-sm sm:text-base">Events</a></li>
+          <li><a href="./php/leaderboard.php" class="hover:underline text-sm sm:text-base">Leaderboard</a></li>
+          <li><a href="./php/student_login.php" class="hover:underline text-sm sm:text-base">Login</a></li>
+          <li><a href="#faqs" class="hover:underline text-sm sm:text-base">FAQs</a></li>
+          <li><a href="#address" class="hover:underline text-sm sm:text-base">Address</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Terms and Conditions Section -->
+    <div class="mt-8 border-t border-gray-700 pt-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <h3 class="text-sm sm:text-lg font-bold mb-2">Terms and Conditions</h3>
+          <div class="text-xs sm:text-sm space-y-2">
+            <h4 class="font-semibold">Important Note:</h4>
+            <ul class="list-disc pl-4 space-y-1">
+              <li>Participants must carry their university ID cards for verification.</li>
+              <li>Late entries may not be entertained.</li>
+              <li>Misconduct leads to immediate disqualification without refund.</li>
+              <li>Participants are liable for any damages to property/equipment.</li>
+              <li>Rules may be modified with prior notice.</li>
+            </ul>
+            
+            <h4 class="font-semibold mt-2">Refund Policy:</h4>
+            <ul class="list-disc pl-4 space-y-1">
+              <li>70% refund available if cancellation is made 15 days before the event.</li>
+              <li>No refunds will be processed for cancellations less than 7 days before the event.</li>
+              <li>Refunds will be processed within 15 working days of cancellation approval.</li>
+              <li>Refund requests must be submitted in writing via email.</li>
+            </ul>
+            
+            <h4 class="font-semibold mt-2">Safety and Conduct Rules:</h4>
+            <ul class="list-disc pl-4 space-y-1">
+              <li>No smoking, alcohol, or prohibited substances allowed.</li>
+              <li>Follow event coordinator instructions strictly.</li>
+              <li>Maintain safety precautions during physical events.</li>
+              <li>Zero tolerance for harassment or unsafe behavior.</li>
+              <li>No prohibited items (flammables, sharp objects, etc.).</li>
+            </ul>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-sm sm:text-lg font-bold mb-2">Address</h3>
+          <div class="text-xs sm:text-sm space-y-2">
+            <p>Jadcherla Campus</p>
+            <p>Plot no.B4, Green Industrial Park</p>
+            <p>Polepally SEZ, TSIIC, Jadcherla</p>
+            <p>Mahbubnagar, Dist. Telangana</p>
+            <p>509 301</p>
+          </div>
+          
+          <h3 class="text-sm sm:text-lg font-bold mb-2 mt-4">Privacy Policy</h3>
+          <div class="text-xs sm:text-sm space-y-2">
+            <ul class="list-disc pl-4 space-y-1">
+              <li>We collect and store registration information securely.</li>
+              <li>Your data is used only for event-related communications.</li>
+              <li>Photos/videos taken during events may be used for promotional purposes.</li>
+              <li>We do not share personal information with third parties.</li>
+              <li>Participants can request data deletion after the event.</li>
+              <li>Cookie usage is limited to essential website functionality.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="text-center mt-8 border-t border-gray-700 pt-4">
+      <p class="text-sm sm:text-base">All rights reserved &copy; Saicharan, STME</p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

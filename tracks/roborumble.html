@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robo Rumble - Event Details</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #8B0000;
+            --primary-dark: #600000;
+            --background: #0a0a0a;
+            --surface: #1a1a1a;
+            --text: #ffffff;
+            --text-secondary: #cccccc;
+            --accent: #ff1a1a;
+            --glow: 0 0 10px rgba(139, 0, 0, 0.5);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background-image: url("../images/bg.png");
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .event-header {
+            background: linear-gradient(135deg, var(--surface), var(--primary-dark));
+            padding: 3rem 1rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 2px solid var(--primary);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+        }
+
+        .event-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(139, 0, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(139, 0, 0, 0.1) 0%, transparent 50%);
+        }
+
+        .event-header h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            position: relative;
+            text-shadow: 0 0 15px rgba(139, 0, 0, 0.7);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px rgba(139, 0, 0, 0.7);
+            }
+            to {
+                text-shadow: 0 0 20px rgba(139, 0, 0, 0.9), 0 0 30px rgba(139, 0, 0, 0.6);
+            }
+        }
+
+        .prize-pool {
+            font-size: clamp(1.2rem, 3vw, 1.6rem);
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-weight: bold;
+            text-shadow: var(--glow);
+        }
+
+        .deadline-container {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .deadline-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(139, 0, 0, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            backdrop-filter: blur(5px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .tabs {
+            background: var(--surface);
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            overflow: hidden;
+            border: 1px solid rgba(139, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .tab-nav {
+            display: flex;
+            background: rgba(139, 0, 0, 0.1);
+            border-bottom: 2px solid var(--primary);
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            position: relative;
+        }
+
+        .tab-nav::-webkit-scrollbar {
+            display: none;
+        }
+
+        .tab-btn {
+            padding: 1rem 1.5rem;
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tab-btn i {
+            font-size: 1.1rem;
+        }
+
+        .tab-btn:hover {
+            color: var(--text);
+            background: rgba(139, 0, 0, 0.1);
+        }
+
+        .tab-btn.active {
+            color: var(--text);
+            background: rgba(139, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--accent);
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from { transform: scaleX(0); }
+            to { transform: scaleX(1); }
+        }
+
+        .tab-content {
+            padding: 2rem;
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .highlight-box {
+            background: rgba(139, 0, 0, 0.1);
+            border-left: 4px solid var(--primary);
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+            transition: transform 0.3s ease;
+        }
+
+        .highlight-box:hover {
+            transform: translateX(5px);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .contact-card {
+            background: rgba(139, 0, 0, 0.1);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid rgba(139, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(139, 0, 0, 0.2);
+        }
+
+        .register-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            margin-top: 1.5rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: var(--glow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .register-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(139, 0, 0, 0.4);
+        }
+
+        .register-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                120deg,
+                transparent,
+                rgba(255, 255, 255, 0.3),
+                transparent
+            );
+            transition: 0.5s;
+        }
+
+        .register-btn:hover::before {
+            left: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .event-header {
+                padding: 2rem 1rem;
+            }
+
+            .deadline-container {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: center;
+            }
+
+            .tab-nav {
+                flex-wrap: nowrap;
+                justify-content: flex-start;
+            }
+
+            .tab-btn {
+                padding: 0.8rem;
+                font-size: 0.8rem;
+            }
+
+            .tab-content {
+                padding: 1.5rem 1rem;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .tab-btn i {
+                font-size: 1rem;
+            }
+
+            .tab-btn span {
+                display: none;
+            }
+
+            .tab-btn {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="event-header" >
+        <a href="../index.html" class="back-button" style="position: absolute; top: 10px; right: 10px; text-decoration: none; color: white; font-size: 24px;">
+            <i class="fas fa-arrow-left"></i>
+        </a>
+    
+        <h1>ROBO RUMBLE</h1>
+        <div class="prize-pool">Prizes: Robo Kits & Trophies</div>
+        <div class="deadline-container">
+            <!-- <div class="deadline-item">
+                <i class="fas fa-calendar-alt"></i>
+                <span>Abstract Deadline: January 30, 2025</span>
+            </div> -->
+            <div class="deadline-item">
+                <i class="fas fa-clock"></i>
+                <span>Event Date: February 14-15, 2025</span>
+            </div>
+        </div>
+    </header>
+    
+
+    <div class="container">
+        <div class="tabs">
+            <div class="tab-nav">
+                <button class="tab-btn active" onclick="openTab(event, 'description')">
+                    <i class="fas fa-info-circle"></i>
+                    <span>Description</span>
+                </button>
+                <button class="tab-btn" onclick="openTab(event, 'format')">
+                    <i class="fas fa-list-ol"></i>
+                    <span>Format</span>
+                </button>
+                <button class="tab-btn" onclick="openTab(event, 'rules')">
+                    <i class="fas fa-gavel"></i>
+                    <span>Rules</span>
+                </button>
+                <button class="tab-btn" onclick="openTab(event, 'specifications')">
+                    <i class="fas fa-cog"></i>
+                    <span>Specifications</span>
+                </button>
+                <button class="tab-btn" onclick="openTab(event, 'resources')">
+                    <i class="fas fa-tools"></i>
+                    <span>Resources</span>
+                </button>
+                <button class="tab-btn" onclick="openTab(event, 'registration')">
+                    <i class="fas fa-user-plus"></i>
+                    <span>Register</span>
+                </button>
+            </div>
+
+            <div id="description" class="tab-content active">
+                <div class="highlight-box">
+                    <p>Robo Rumble is an action-packed Elite event of NMIMS Tech Fiesta 2025 that brings together the thrill of Robo Race and the intensity of Robo War. <br><br>Teams are tasked with designing, assembling, and programming innovative robots to compete in high-stakes challenges.<br><br> From racing against time on smooth and obstacle-laden tracks to battling it out in an electrifying arena showdown, the event pushes participants to showcase their engineering prowess, strategic thinking, and combat skills.</p>
+                </div>
+            </div>
+
+            <div id="format" class="tab-content">
+                <h2>Competition Rounds</h2>
+                
+                <div class="highlight-box">
+                    <h3>Round 1 - Flat Track</h3>
+                    <ul>
+                        <li>Test of basic robot functionality and assembly</li>
+                        <li>20-meter-long smooth track race</li>
+                        <li>Focus on speed and precise navigation</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box">
+                    <h3>Round 2 - Robo Race</h3>
+                    <ul>
+                        <li>40-50 cm wide track of 100-meteres with varying hurdles</li>
+                        <li>Challenges include:
+                            <ul style="margin-left: 20px;">
+                                <li>30° incline/decline ramps</li>
+                                <li>Slippery paths</li>
+                                <li>Marble pits</li>
+                                <li>Speed breakers</li>
+                                <li>Seesaws</li>
+                            </ul>
+                        </li>
+                        <li>Width increases to 60-70 cm at checkpoints</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box">
+                    <h3>Round 3 - Arena Battle</h3>
+                    <ul>
+                        <li>Circular arena (3-4 meter diameter)</li>
+                        <li>Head-to-head robot battles</li>
+                        <li>Objective: Push opponents out of the ring</li>
+                        <li>Test of combat strategy and robot durability</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="rules" class="tab-content">
+                <div class="highlight-box">
+                    <h3>General Rules</h3>
+                    <ul>
+                        <li>Each team must consist of 2-4 members. All participants are required to carry valid institutional IDs to participate in the event.</li>
+                        <li>Teams are responsible for ensuring that their robots are in good working condition before and during the event. Time penalties may be applied for any delays or excessive resets.</li>
+                        <li>All participants must respect the event staff and referees. Any unethical behavior, such as damaging tracks or arena equipment, will result in immediate disqualification.</li>
+                        <li>The same robot, assembled and made by the team, must be used for both the Robo Race and Robo War rounds. Any modifications made to the robot must comply with the event's rules.</li>
+                    </ul>
+                </div>
+            
+
+                <div class="highlight-box">
+                    <h3>Gameplay Rules</h3>
+                    <h4>Robo Race</h4>
+                    <ul>
+                        <li>The race will include a variety of obstacles, such as switch bridges, speed breakers, marble pits, slippery paths, rotating discs, curved ramps, seesaws, and inclinations/declinations with a 30° angle.</li>
+                        <li>There will be set checkpoints that can be used if a robot malfunctions. Teams are allowed to pick up their robot and start from the previous checkpoint; however, battery changes are not permitted.</li>
+                        <li>Teams are allowed to reset their robot up to three times during a round. Each reset will incur a time penalty, and the timer will continue running during this process.</li>
+                        <li>The competition is based on a time trial system. The team with the best time after completing the track will qualify for the final round. No second chances will be provided after completing the track, even if the score is poor.</li>
+                    </ul>
+                    
+                    <h4>Robo War</h4>
+                    <ul>
+                        <li>The primary objective is for robots to push their opponents out of the arena without causing deliberate damage to their structure or electrical systems.</li>
+                        <li>Teams are allowed to modify the robot's code after the trial run; however, all modifications must adhere to the event's hardware rules.</li>
+                        <li>Robots must not damage the arena. Practice runs in the arena are strictly prohibited.</li>
+                        <li>Participants are not allowed to touch their robots during a run. Failure to comply with this rule will lead to disqualification.</li>
+                    </ul>
+                    
+                    <h4>Common Rules for All Rounds</h4>
+                    <ul>
+                        <li>The fastest, most balanced, and strongest robot will be declared the winner. All rounds are based on a time-trial system, with a qualifying round for each team.</li>
+                        <li>Robots may be repaired between rounds, but any repairs during a round must be approved by referees and will incur time penalties.</li>
+                        <li>Teams must have their robot ready when their turn is called. Late arrivals may forfeit their turn or face disqualification.</li>
+                        <li>Any form of unethical behavior, including cheating or intentional damage to robots, tracks, or the arena, will result in disqualification.</li>
+                        <li>The faculty coordinators and judges have the final say on all matters related to the event. Their decisions will be considered final.</li>
+                        <li>E-Certificates of Participation will be provided to all teams that compete, except those disqualified for breaking the event rules.</li>
+                        <li>The coordination committee reserves the right to add or update any rules at their discretion.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="specifications" class="tab-content">
+                <div class="highlight-box">
+                    <h3>Robot Specifications</h3>
+                    <ul>
+                        <li>The robot must not exceed dimensions of 30cm x 30cm x 30cm in size, and it must weigh no more than 5kg.</li>
+                        <li>The robot must be electrically powered, with a maximum voltage of 12V DC. Batteries must be sealed and use immobilized electrolyte types, such as gel cells, lithium, or NiCad batteries.</li>
+                        <li>There are no restrictions on the type of motor used in the robot's construction.</li>
+                        <li>All robots must be original designs created by the team. Pre-assembled kits or LEGO-based robots are not permitted.</li>
+                        <li>The robot must be wirelessly controlled, and the external control device (such as a controller) will not be included in the size constraints.</li>
+                    </ul>
+                </div>
+                
+            </div>
+
+            <div id="resources" class="tab-content">
+                <div class="highlight-box">
+                    <h3>Available Facilities</h3>
+                    <ul>
+                        <li>Technical Resources:
+                            <ul>
+                                <li>Power outlets for charging</li>
+                                <li>Workshop tools for repairs</li>
+                                <li>Competition tracks and arena</li>
+                            </ul>
+                        </li>
+                        <li>Support Facilities:
+                            <ul>
+                                <li>Team setup area with tables & chairs</li>
+                                <li>Announcement system</li>
+                            </ul>
+                        </li>
+                         <li>Note: Participants must construct their robots using their own resources and are responsible for safely transporting all robot components to the campus</li>
+                    </ul>
+                </div>
+            
+                <!-- Contact Coordinator Section -->
+                <div class="contact-coordinator">
+                    <h2>Contact Coordinator</h2>
+                    <div class="contact-grid">
+                        <div class="contact-card">
+                            <div class="contact-info">
+                                <i class="fas fa-user-circle fa-2x"></i>
+                                <h3>V Vaishnavi</h3>
+                                <p><i class="fas fa-phone"></i> 9908554412</p>
+                                <p><i class="fas fa-envelope"></i> vaishnavi.vadla045@nmims.edu.in</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+
+            <div id="registration" class="tab-content">
+        
+
+                <div class="highlight-box">
+                    <h3>Prizes</h3>
+                    <ul>
+                        <li>Trophies for 1st and 2nd place</li>
+                        <li>Robo Kit Hampers for top two teams</li>
+                        <li>Participation E-Certificates for all valid entries</li>
+                    </ul>
+                </div>
+                
+                <a href="../php/student_login.php" class="register-btn">
+                    <i class="fas fa-sign-in-alt"></i>
+                    <span>Register Now</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openTab(evt, tabName) {
+            // Hide all tab content
+            const tabcontent = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].classList.remove("active");
+            }
+
+            // Remove active class from all tab buttons
+            const tablinks = document.getElementsByClassName("tab-btn");
+            for (let i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("active");
+            }
+
+            // Show the selected tab content and mark the button as active
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+
+        // Add smooth scrolling for mobile navigation
+        document.querySelector('.tab-nav').addEventListener('scroll', (e) => {
+            e.preventDefault();
+        }, { passive: true });
+
+        // Add touch slide functionality for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+        const tabNav = document.querySelector('.tab-nav');
+
+        tabNav.addEventListener('touchstart', (e) => {
+            touchStartX = e.touches[0].clientX;
+        }, { passive: true });
+
+        tabNav.addEventListener('touchmove', (e) => {
+            touchEndX = e.touches[0].clientX;
+            const diffX = touchStartX - touchEndX;
+            tabNav.scrollLeft += diffX / 5;
+        }, { passive: true });
+    </script>
+</body>
+</html>

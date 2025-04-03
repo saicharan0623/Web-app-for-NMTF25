@@ -1,0 +1,20 @@
+[22-Nov-2024 16:45:03 UTC] PHP Fatal error:  Uncaught Error: Class "mysqli" not found in /home/nmimstec/public_html/php/db_connect.php:7
+Stack trace:
+#0 /home/nmimstec/public_html/php/student_login.php(4): include()
+#1 {main}
+  thrown in /home/nmimstec/public_html/php/db_connect.php on line 7
+[22-Nov-2024 16:47:03 UTC] PHP Fatal error:  Uncaught Error: Class "mysqli" not found in /home/nmimstec/public_html/php/db_connect.php:7
+Stack trace:
+#0 /home/nmimstec/public_html/php/student_login.php(4): include()
+#1 {main}
+  thrown in /home/nmimstec/public_html/php/db_connect.php on line 7
+[22-Nov-2024 16:47:07 UTC] PHP Fatal error:  Uncaught Error: Class "mysqli" not found in /home/nmimstec/public_html/php/db_connect.php:7
+Stack trace:
+#0 /home/nmimstec/public_html/php/student_login.php(4): include()
+#1 {main}
+  thrown in /home/nmimstec/public_html/php/db_connect.php on line 7
+[22-Nov-2024 16:47:16 UTC] PHP Fatal error:  Uncaught Error: Class "mysqli" not found in /home/nmimstec/public_html/php/db_connect.php:7
+Stack trace:
+#0 /home/nmimstec/public_html/php/student_login.php(4): include()
+#1 {main}
+  thrown in /home/nmimstec/public_html/php/db_connect.php on line 7
